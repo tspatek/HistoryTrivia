@@ -1,0 +1,41 @@
+body {
+    font-weight: bold;
+    margin: 0px; 
+    padding: 0px;
+}
+
+h2 {
+    color: #fefcf9;
+}
+
+h3 {
+    color: #202126;
+    background-color: #fefcf9;
+    padding: 25px;
+    border-radius: 8px;
+    opacity: .7;
+}
+
+.background { 
+    background-image: url("../images/Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container-flex {
+    height: 100vh;
+}
+
+.row {
+    height: 100%;
+}
+
+#sheet-home {
+    background-image: url("../images/Sheet.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* color: #202126;
+    max-width: 225px; */
+}
