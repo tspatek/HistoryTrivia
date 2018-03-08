@@ -1,19 +1,8 @@
 body {
     font-weight: bold;
+    font-family: 'IM Fell English SC', serif;
     margin: 0px; 
     padding: 0px;
-}
-
-h2 {
-    color: #fefcf9;
-}
-
-h3 {
-    color: #202126;
-    background-color: #fefcf9;
-    padding: 25px;
-    border-radius: 8px;
-    opacity: .7;
 }
 
 .background { 
