@@ -1,6 +1,7 @@
 body {
     font-weight: bold;
     font-family: 'IM Fell English SC', serif;
+    color: #311c0f;
     margin: 0px; 
     padding: 0px;
 }
@@ -27,4 +28,9 @@ body {
     background-position: center;
     /* color: #202126;
     max-width: 225px; */
+}
+
+button {
+    background-color: #311c0f;
+    color: #f5dfb3;
 }

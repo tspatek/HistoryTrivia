@@ -1,11 +1,12 @@
 
 $(document).ready(function () {
 
-    var userMessage = [
+    var messages = [
         "CORRECT!",
         "WRONG CHOICE!",
         "TIMES UP!"
     ];
+    var userMessage = " ";
     var totalCorrectAnswers = 0;
     var totalWrongAnswers = 0;
 
@@ -14,6 +15,7 @@ $(document).ready(function () {
             question: " ",
             choices: [],
             correctAnswer: " ",
+            info: " ",
             img: " "
         },
         questions: [
@@ -26,10 +28,11 @@ $(document).ready(function () {
                     "Hatshepsut",
                     "Amenhotep I"
                 ],
-                correctAnswer: `Queen Nefertiti was married to 
-                                Akhenaten, the heretic king. Akhenaten
-                                attempted to convert ancient Eygpt to 
-                                monotheism.`,
+                correctAnswer: "Akhenaten",
+                info: `Queen Nefertiti was married to 
+                       Akhenaten, the heretic king. Akhenaten
+                       attempted to convert ancient Eygpt to 
+                       monotheism.`,
                 img: "assets/images/Nefertiti.jpg"
             },
             {
@@ -42,8 +45,9 @@ $(document).ready(function () {
                     "Great Wall of China",
                     "Lighthouse at Alexandria"
                 ],
-                correctAnswer: `The Great Wall of China is not included 
-                                as one of the 7 Wonders of the Ancient World.`,
+                correctAnswer: "Great Wall of China",
+                info: `The Great Wall of China is not included 
+                       as one of the 7 Wonders of the Ancient World.`,
                 img: "assets/images/GreatWallOfChina.jpg.jpg"
             },
             {
@@ -55,9 +59,10 @@ $(document).ready(function () {
                     "Vladimir Lenin's birthday",
                     "The liberation of Paris from the Nazis"
                 ],
-                correctAnswer: `VE Day (Victory in Europe) commemorates 
-                                Nazi Germany's surrender toward the end 
-                                of WWII.`,
+                correctAnswer: "Nazi Germany's surrender",
+                info: `VE Day (Victory in Europe) commemorates 
+                       Nazi Germany's surrender toward the end 
+                       of WWII.`,
                 img: "assets/images/VEDay.jpg"
             },
             {
@@ -70,8 +75,8 @@ $(document).ready(function () {
                     "Andrew Jackson",
                     "Grover Cleveland"
                 ],
-                correctAnswer: `Lincoln was succeeded by Andrew 
-                                Johnson.`,
+                correctAnswer: "Andrew Johnson",
+                info: `Lincoln was succeeded by Andrew Johnson.`,
                 img: "assets/images/"
             },
             {
@@ -83,9 +88,10 @@ $(document).ready(function () {
                     "Elizabeth I",
                     "Mary, Queen of Scots"
                 ],
-                correctAnswer: `Ann Boleyn was the mother of Elizabeth I.
-                                She was beheaded by her husband, Henry VII,
-                                when Elizabeth was two years old.`,
+                correctAnswer: "Elizabeth I",
+                info: `Ann Boleyn was the mother of Elizabeth I.
+                       She was beheaded by her husband, Henry VII,
+                       when Elizabeth was two years old.`,
                 img: "assets/images/Elizabeth_I.jpg"
             },
             {
@@ -98,10 +104,11 @@ $(document).ready(function () {
                     "Titanic",
                     "Mauretania"
                 ],
-                correctAnswer: `The sinking of the Lusitania in 1915 
-                                helped turn US public opition against 
-                                Germany. This event led the way for US
-                                involvement in WW1 two years later.`,
+                correctAnswer: "Lusitania",
+                info: `The sinking of the Lusitania in 1915 
+                       helped turn US public opition against 
+                       Germany. This event led the way for US
+                       involvement in WW1 two years later.`,
                 img: "assets/images/Lusitania.jpg"
             },
             {
@@ -113,9 +120,10 @@ $(document).ready(function () {
                     "500 years",
                     "1200 years"
                 ],
-                correctAnswer: `The Roman empire lasted 500 years. It's
-                                eastern counterpart, the Byzantine empire, 
-                                lasted for 1500 years.`,
+                correctAnswer: "500 years",
+                info: `The Roman empire lasted 500 years. It's
+                       eastern counterpart, the Byzantine empire, 
+                       lasted for 1500 years.`,
                 img: "assets/images/RomanEmpire.jpg"
             },
             {
@@ -128,16 +136,17 @@ $(document).ready(function () {
                     "Cuneiform script",
                     "Linear B"
                 ],
-                correctAnswer: `The discovery of the Rosetta Stone 
-                                was a breakthrough in diciphering Egyption 
-                                hieroglphs. It contains three versions of the
-                                same text; one written in Greek, one in Demotic 
-                                script, and one in hieroglphs.`,
+                correctAnswer: "Egyption hieroglphs",
+                info: `The discovery of the Rosetta Stone 
+                       was a breakthrough in diciphering Egyption 
+                       hieroglphs. It contains three versions of the
+                       same text: one written in Greek, one in 
+                       Demotic script, and one in hieroglphs.`,
                 img: "assets/images/RosettaStone.jpg"
             },
             {
-                question: `Which killer was also known as The Whitechapel 
-                           Murderer?`,
+                question: `Which killer was also known as The 
+                           Whitechapel Murderer?`,
                 choices: [
                     "H.H. Holmes",
                     "Ted Bundy",
@@ -145,8 +154,9 @@ $(document).ready(function () {
                     "Lizzie Borden",
                     "Jack the Ripper"
                 ],
-                correctAnswer: `Jack the Ripper commited all of his murders
-                                in London's Whitechapel neighborhood.`,
+                correctAnswer: "Jack the Ripper",
+                info: `Jack the Ripper commited all of his murders
+                       in London's Whitechapel neighborhood.`,
                 img: "assets/images/JackTheRipper.jpg"
             },
             {
@@ -158,9 +168,10 @@ $(document).ready(function () {
                     "Elizabeth of Russia",
                     "Nicholas II"
                 ],
-                correctAnswer: `Nicholas II, along with his entire immediate 
-                                family and their servants, was executed by the 
-                                Bolsheviks in 1918.`,
+                correctAnswer: "Nicholas II",
+                info: `Nicholas II, along with his entire immediate 
+                       family and their servants, was executed by the 
+                       Bolsheviks in 1918.`,
                 img: "assets/images/Romanovs.jpg"
             },
             {
@@ -172,9 +183,10 @@ $(document).ready(function () {
                     "Constantine",
                     "Charles III"
                 ],
-                correctAnswer: `Charlemagne, aka Charles The Great, was crowned
-                                Holy Roman Emperor by Pope Leo III in the year 
-                                800.`,
+                correctAnswer: "Charlemagne",
+                info: `Charlemagne, aka Charles The Great, was 
+                       crowned Holy Roman Emperor by Pope Leo III 
+                       in the year 800.`,
                 img: "assets/images/Charlemange.jpg"
             },
             {
@@ -186,8 +198,9 @@ $(document).ready(function () {
                     "The heretic pharaoh",
                     "The architech of the great pyramid"
                 ],
-                correctAnswer: `Narmer is credited as being the first pharaoh
-                                to unifiy upper and lower Egypt circa 3100 BCE.`,
+                correctAnswer: "The first king of upper and lower Egypt",
+                info: `Narmer is credited as being the first pharaoh
+                       to unifiy upper and lower Egypt circa 3100 BCE.`,
                 img: "assets/images/Narmer.jpg"
             },
             {
@@ -199,8 +212,9 @@ $(document).ready(function () {
                     "Modern-day Jordan",
                     "Modern-day Sudan"
                 ],
-                correctAnswer: `The ancient city of Babylon was located in 
-                                modern-day Iraq`,
+                correctAnswer: "Modern-day Iraq",
+                info: `The ancient city of Babylon was located in 
+                       modern-day Iraq`,
                 img: "assets/images/Babylon.jpg"
             },
             {
@@ -212,61 +226,113 @@ $(document).ready(function () {
                     "Darth Vader groupies",
                     "Ancient Sumarian texts"
                 ],
-                correctAnswer: `The Vedas are a collection of ancient Hindu 
-                                texts. They are written in Sanskrit.`,
+                correctAnswer: "Ancient Indian texts",
+                info: `The Vedas are a collection of ancient Hindu 
+                       texts. They are written in Sanskrit.`,
                 img: "assets/images/Vedas.jpg"
             }
         ],
-        displayQuestion: function () {
-            $("#sheet-home").empty();
+        displayStartScreen: function () {
             $("#sheet-home").append(`
-            <div id="question">
-                ${this.currentQuestion.question}
-            </div>
-            <div id="answer1">
-                ${this.currentQuestion.choices[0]}
-            </div>
-            <div id="answer2">
-                ${this.currentQuestion.choices[1]}
-            </div>
-            <div id="answer3">
-                ${this.currentQuestion.choices[2]}
-            </div>
-            <div id="answer4">
-                ${this.currentQuestion.choices[3]}
-            </div>
-            <div id="answer5">
-                ${this.currentQuestion.choices[4]}
-            </div>
+                <div id="title">
+                    <h1>WORLD HISTORY TRIVIA</h1>
+                </div>
+                <div id="start">
+                    <button id="start-button" type="button" 
+                            class="btn btn-block btn-lg">
+                        Start
+                    </button>
+                </div>
             `);
         },
-        displayAnswer: function (userMessage) {
+        pickQuestion: function () {
+            var randomQuestion = game.questions[Math.floor(Math.random()
+                * game.questions.length)];
+
+            Object.assign(game.currentQuestion, randomQuestion);
+        },
+        displayQuestion: function () {
+            game.pickQuestion();
+            $("#sheet-home").empty();
+
+            $("#sheet-home").append(`
+                <div id="timer">
+
+                </div>
+                <div id="question">
+                    ${game.currentQuestion.question}
+                </div>
+                <div class="choice" id="answer1">
+                    ${game.currentQuestion.choices[0]}
+                </div>
+                <div class="choice" id="answer2">
+                    ${game.currentQuestion.choices[1]}
+                </div>
+                <div class="choice" id="answer3">
+                    ${game.currentQuestion.choices[2]}
+                </div>
+                <div class="choice" id="answer4">
+                    ${game.currentQuestion.choices[3]}
+                </div>
+                <div class="choice" id="answer5">
+                    ${game.currentQuestion.choices[4]}
+                </div>
+            `);
+        },
+        calculateChoice: function (event) {
+            if ($(event.currentTarget).text().trim() === game.correctAnswer) {
+                totalCorrectAnswers++;
+                userMessage = messages[0];
+            } else {
+                totalCorrectAnswers--;
+                userMessage = messages[1];
+            }
+        },
+        displayAnswer: function (event) {
+            game.calculateChoice(event);
             $("#sheet-home").empty();
             $("#sheet-home").append(`
-            <div id="user-message">
-                ${userMessage}
-            </div>
-            <div id="answer">
-                ${this.currentQuestion.correctAnswer}
-            </div>
-            <div id="answer1">
-                <img src=${this.currentQuestion.img}>
-            </div>
+                <div id="timer">
+
+                </div>
+                <div id="user-message">
+                    ${userMessage}
+                </div>
+                <div id="answer">
+                    ${game.currentQuestion.info}
+                </div>
+                <div id="answer-image">
+                    <img src=${game.currentQuestion.img}>
+                </div>
             `);
         },
         displayFinalStats: function () {
             $("#sheet-home").empty();
             $("#sheet-home").append(`
-            <div id="correct-answers">
-                
-            </div>
-            <div id="incorrect-answers">
-                
-            </div>
-            <div id="restart">
-                
-            </div>
+                <div id="correct-answers">
+                    ${totalCorrectAnswers}
+                </div>
+                <div id="incorrect-answers">
+                    ${totalWrongAnswers}
+                </div>
+                <div id="reset">
+                    <button id="reset-button" type="button" 
+                            class="btn btn-block btn-lg">
+                        Start
+                    </button>
+                </div>
             `);
+        },
+        restart: function () {
+
         }
     };
+
+    game.displayStartScreen();
+
+    $("#sheet-home").on("click", "#start-button", game.displayQuestion);
+
+    $("#sheet-home").on("click", ".choice", game.displayAnswer);
+
+    $("#sheet-home").on("click", "#reset-button", game.restart);
 });
