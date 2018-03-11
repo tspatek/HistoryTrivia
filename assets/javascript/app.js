@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-
+    var questionCount = 0;
     var messages = [
         "CORRECT!",
         "WRONG CHOICE!",
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 correctAnswer: "Great Wall of China",
                 info: `The Great Wall of China is not included 
                        as one of the 7 Wonders of the Ancient World.`,
-                img: "assets/images/GreatWallOfChina.jpg.jpg"
+                img: "assets/images/GreatWallOfChina.jpg"
             },
             {
                 question: `What does VE Day commemorate?`,
@@ -77,7 +77,7 @@ $(document).ready(function () {
                 ],
                 correctAnswer: "Andrew Johnson",
                 info: `Lincoln was succeeded by Andrew Johnson.`,
-                img: "assets/images/"
+                img: "assets/images/Johnson.jpg"
             },
             {
                 question: `Who was the daughter of Anne Boleyn?`,
@@ -187,7 +187,7 @@ $(document).ready(function () {
                 info: `Charlemagne, aka Charles The Great, was 
                        crowned Holy Roman Emperor by Pope Leo III 
                        in the year 800.`,
-                img: "assets/images/Charlemange.jpg"
+                img: "assets/images/Charlemagne.jpg"
             },
             {
                 question: `Who was Narmer (aka Menes)?`,
@@ -234,12 +234,12 @@ $(document).ready(function () {
         ],
         displayStartScreen: function () {
             $("#sheet-home").append(`
-                <div id="title">
+                <div id="title" class="m-5">
                     <h1>WORLD HISTORY TRIVIA</h1>
                 </div>
-                <div id="start">
+                <div id="start" class="m-5">
                     <button id="start-button" type="button" 
-                            class="btn btn-block btn-lg">
+                            class="btn btn-lg">
                         Start
                     </button>
                 </div>
@@ -259,80 +259,99 @@ $(document).ready(function () {
                 <div id="timer">
 
                 </div>
-                <div id="question">
+                <div id="question" class="m-5">
                     ${game.currentQuestion.question}
                 </div>
-                <div class="choice" id="answer1">
+                <div class="choice m-1" id="answer1">
                     ${game.currentQuestion.choices[0]}
                 </div>
-                <div class="choice" id="answer2">
+                <div class="choice m-1" id="answer2">
                     ${game.currentQuestion.choices[1]}
                 </div>
-                <div class="choice" id="answer3">
+                <div class="choice m-1" id="answer3">
                     ${game.currentQuestion.choices[2]}
                 </div>
-                <div class="choice" id="answer4">
+                <div class="choice m-1" id="answer4">
                     ${game.currentQuestion.choices[3]}
                 </div>
-                <div class="choice" id="answer5">
+                <div class="choice m-1" id="answer5">
                     ${game.currentQuestion.choices[4]}
                 </div>
             `);
         },
         calculateChoice: function (event) {
-            if ($(event.currentTarget).text().trim() === game.correctAnswer) {
+            if (event.currentTarget.innerText === game.currentQuestion.correctAnswer) {
                 totalCorrectAnswers++;
                 userMessage = messages[0];
             } else {
-                totalCorrectAnswers--;
+                totalWrongAnswers++;
                 userMessage = messages[1];
             }
         },
-        displayAnswer: function (event) {
+        advanceScreen: function() {
+            if (questionCount < 11) {
+                game.displayQuestion();
+            } else {
+                game.displayFinalStats();
+            }
+        },
+        displayAnswer: function (event) {  
             game.calculateChoice(event);
+
             $("#sheet-home").empty();
             $("#sheet-home").append(`
                 <div id="timer">
 
                 </div>
-                <div id="user-message">
+                <div id="user-message" class="m-5">
                     ${userMessage}
                 </div>
                 <div id="answer">
                     ${game.currentQuestion.info}
                 </div>
                 <div id="answer-image">
-                    <img src=${game.currentQuestion.img}>
+                    <img src=${game.currentQuestion.img} height="350px">
                 </div>
-            `);
+            `);  
+            questionCount++;
+
+            setTimeout(game.advanceScreen, 5000);
         },
         displayFinalStats: function () {
             $("#sheet-home").empty();
             $("#sheet-home").append(`
-                <div id="correct-answers">
-                    ${totalCorrectAnswers}
+                <div id="correct-answers" class="mt-5">
+                    CORRECT ANSWERS: ${totalCorrectAnswers}
                 </div>
                 <div id="incorrect-answers">
-                    ${totalWrongAnswers}
+                    INCORRECT ANSWERS: ${totalWrongAnswers}
                 </div>
-                <div id="reset">
+                <div id="reset" class=m-5>
                     <button id="reset-button" type="button" 
-                            class="btn btn-block btn-lg">
-                        Start
+                            class="btn btn-lg">
+                        Reset
                     </button>
                 </div>
             `);
         },
-        restart: function () {
+        reset: function () {
+            questionCount = 0;
+            userMessage = " ";
+            totalCorrectAnswers = 0;
+            totalWrongAnswers = 0;
 
+            game.displayQuestion();
         }
     };
 
+    //Start Game
     game.displayStartScreen();
 
     $("#sheet-home").on("click", "#start-button", game.displayQuestion);
 
     $("#sheet-home").on("click", ".choice", game.displayAnswer);
 
-    $("#sheet-home").on("click", "#reset-button", game.restart);
+    $("#sheet-home").on("click", "#reset-button", game.reset);
+
+
 });
