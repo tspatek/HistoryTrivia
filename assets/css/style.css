@@ -2,7 +2,6 @@ body {
     font-weight: bold;
     font-family: 'IM Fell English SC', serif;
     color: #311c0f;
-    font-size: 150%;
     margin: 0px; 
     padding: 0px;
 }
@@ -27,10 +26,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-}
-
-#question {
-    font-size: 175%;
 }
 
 button {

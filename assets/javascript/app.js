@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+    var countDown = 30;
+    var intervalId;
     var questionCount = 0;
     var messages = [
         "CORRECT!",
@@ -9,6 +11,31 @@ $(document).ready(function () {
     var userMessage = " ";
     var totalCorrectAnswers = 0;
     var totalWrongAnswers = 0;
+
+    var shuffledQuestions = [];
+
+    function startCountDown() {
+        intervalId = setInterval(decrement, 1000);
+    }
+
+    function stopCountDown() {
+        clearInterval(intervalId);
+        intervalId = undefined;
+    }
+
+    function decrement() {
+        countDown--;
+
+        $("#count-down").html(`
+            <h2>
+                Time Remaining: ${countDown}
+            </h2>
+        `)
+
+        if (countDown === 0) {
+            game.displayAnswer();
+        } 
+    }
 
     var game = {
         currentQuestion: {
@@ -36,7 +63,7 @@ $(document).ready(function () {
                 img: "assets/images/Nefertiti.jpg"
             },
             {
-                question: `Which is not one of the 7 Wonders of 
+                question: `Which is not one of the 7 Wonders of
                            the Ancient World?`,
                 choices: [
                     "Hanging Gardens of Babylon",
@@ -256,75 +283,104 @@ $(document).ready(function () {
             $("#sheet-home").empty();
 
             $("#sheet-home").append(`
-                <div id="timer">
-
+                <div id="count-down" class="m-5">
+                
                 </div>
-                <div id="question" class="m-5">
-                    ${game.currentQuestion.question}
+                <div>
+                    <h1 id="question" class="m-5">
+                        ${game.currentQuestion.question}
+                    </h1>
                 </div>
-                <div class="choice m-1" id="answer1">
-                    ${game.currentQuestion.choices[0]}
+                <div>
+                    <h3 class="choice m-1" id="answer1">
+                        ${game.currentQuestion.choices[0]}
+                    </h3>
                 </div>
-                <div class="choice m-1" id="answer2">
-                    ${game.currentQuestion.choices[1]}
+                <div>
+                    <h3 class="choice m-1" id="answer2">
+                        ${game.currentQuestion.choices[1]}
+                    </h3>
                 </div>
-                <div class="choice m-1" id="answer3">
-                    ${game.currentQuestion.choices[2]}
+                <div>
+                    <h3 class="choice m-1" id="answer3">
+                        ${game.currentQuestion.choices[2]}
+                    </h3>
                 </div>
-                <div class="choice m-1" id="answer4">
-                    ${game.currentQuestion.choices[3]}
+                <div>
+                    <h3 class="choice m-1" id="answer4">
+                        ${game.currentQuestion.choices[3]}
+                    </h3>
                 </div>
-                <div class="choice m-1" id="answer5">
-                    ${game.currentQuestion.choices[4]}
+                <div>
+                    <h3 class="choice m-1" id="answer5">
+                        ${game.currentQuestion.choices[4]}
+                    </h3>
                 </div>
             `);
+            startCountDown();
         },
         calculateChoice: function (event) {
-            if (event.currentTarget.innerText === game.currentQuestion.correctAnswer) {
+            var userChoice = event.currentTarget.textContent.trim();
+            if (userChoice === game.currentQuestion.correctAnswer) {
+
                 totalCorrectAnswers++;
                 userMessage = messages[0];
+
             } else {
                 totalWrongAnswers++;
                 userMessage = messages[1];
             }
         },
-        advanceScreen: function() {
-            if (questionCount < 11) {
+        advanceScreen: function () {
+            if (questionCount < 10) {
                 game.displayQuestion();
             } else {
                 game.displayFinalStats();
             }
         },
-        displayAnswer: function (event) {  
-            game.calculateChoice(event);
+        displayAnswer: function (event = 0) {
+            stopCountDown();
+            countDown = 30;
+
+            if (event === 0) {
+                totalWrongAnswers++;
+                userMessage = messages[2];
+            } else {
+                game.calculateChoice(event);
+            }
 
             $("#sheet-home").empty();
             $("#sheet-home").append(`
-                <div id="timer">
-
+                <div>
+                    <h1 id="user-message" class="m-5">
+                        ${userMessage}
+                    </h1>
                 </div>
-                <div id="user-message" class="m-5">
-                    ${userMessage}
-                </div>
-                <div id="answer">
-                    ${game.currentQuestion.info}
+                <div>
+                    <h3 id="answer" class="m-5">
+                        ${game.currentQuestion.info}
+                    </h3>
                 </div>
                 <div id="answer-image">
-                    <img src=${game.currentQuestion.img} height="350px">
+                    <img src=${game.currentQuestion.img} height="500">
                 </div>
-            `);  
+            `);
             questionCount++;
 
-            setTimeout(game.advanceScreen, 5000);
+            setTimeout(game.advanceScreen, 7000);
         },
         displayFinalStats: function () {
             $("#sheet-home").empty();
             $("#sheet-home").append(`
-                <div id="correct-answers" class="mt-5">
-                    CORRECT ANSWERS: ${totalCorrectAnswers}
+                <div>
+                    <h2 id="correct-answers" class="mt-5">
+                        CORRECT ANSWERS: ${totalCorrectAnswers}
+                    </h2>
                 </div>
-                <div id="incorrect-answers">
-                    INCORRECT ANSWERS: ${totalWrongAnswers}
+                <div>
+                    <h2 id="incorrect-answers">
+                        INCORRECT ANSWERS: ${totalWrongAnswers}
+                    </h2>
                 </div>
                 <div id="reset" class=m-5>
                     <button id="reset-button" type="button" 
