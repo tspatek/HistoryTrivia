@@ -59,7 +59,7 @@ $(document).ready(function () {
                 correctAnswer: "Akhenaten",
                 info: `Queen Nefertiti was married to 
                        Akhenaten, the heretic king. Akhenaten
-                       attempted to convert ancient Eygpt to 
+                       attempted to convert ancient Egypt to 
                        monotheism.`,
                 img: "assets/images/Nefertiti.jpg"
             },
@@ -134,7 +134,7 @@ $(document).ready(function () {
                 ],
                 correctAnswer: "Lusitania",
                 info: `The sinking of the Lusitania in 1915 
-                       helped turn US public opition against 
+                       helped turn US public opinion against 
                        Germany. This event led the way for US
                        involvement in WW1 two years later.`,
                 img: "assets/images/Lusitania.jpg"
@@ -227,8 +227,8 @@ $(document).ready(function () {
                     "The architech of the great pyramid"
                 ],
                 correctAnswer: "The first king of upper and lower Egypt",
-                info: `Narmer is credited as being the first pharaoh
-                       to unifiy upper and lower Egypt circa 3100 BCE.`,
+                info: `Narmer was the first pharaoh to unifiy upper and 
+                       lower Egypt circa 3100 BCE.`,
                 img: "assets/images/Narmer.jpg"
             },
             {
@@ -242,7 +242,7 @@ $(document).ready(function () {
                 ],
                 correctAnswer: "Modern-day Iraq",
                 info: `The ancient city of Babylon was located in 
-                       modern-day Iraq`,
+                       modern-day Iraq.`,
                 img: "assets/images/Babylon.jpg"
             },
             {
@@ -258,6 +258,53 @@ $(document).ready(function () {
                 info: `The Vedas are a collection of ancient Hindu 
                        texts. They are written in Sanskrit.`,
                 img: "assets/images/Vedas.jpg"
+            },
+            {
+                question: `What was the largest empire in 
+                           pre-Columbian America?`,
+                choices: [
+                    "Toltec Empire",
+                    "Aztec Empire",
+                    "Olmec Empire",
+                    "Mayan Empire",
+                    "Inca Empire"
+                ],
+                correctAnswer: "Inca Empire",
+                info: `The Inca Empire was centred in the Andes (in 
+                       modern-day Peru). It incorporated a large
+                       portion of western South America.`,
+                img: "assets/images/Inca.jpg"
+            },
+            {
+                question: `The Enlightenment had an influence on 
+                           which of these wars?`,
+                choices: [
+                    "Russian Revolution",
+                    "French Revolution",
+                    "War of the Roses",
+                    "War of 1812",
+                    "Austro-Prussian War"
+                ],
+                correctAnswer: "French Revolution",
+                info: `The ideas of the Enlightenment inspired 
+                       both the American and French Revolution.`,
+                img: "assets/images/FrenchRevolution.jpg"
+            },
+            {
+                question: `In which year did the demolition of 
+                           the Berlin Wall begin?`,
+                choices: [
+                    "1985",
+                    "1983",
+                    "1980",
+                    "1989",
+                    "1992"
+                ],
+                correctAnswer: "1989",
+                info: `The Berlin Wall was a guarded concrete barrier 
+                       that physically and ideologically divided Berlin 
+                       from 1961 to 1989.`,
+                img: "assets/images/BerlinWall.jpg"
             }
         ],
         displayStartScreen: function () {
@@ -346,7 +393,7 @@ $(document).ready(function () {
             }
         },
         advanceScreen: function () {
-            if (questionCount < 10) {
+            if (questionCount < 8) {
                 game.displayQuestion();
             } else {
                 game.displayFinalStats();
@@ -399,7 +446,7 @@ $(document).ready(function () {
                 <div id="reset" class=m-5>
                     <button id="reset-button" type="button" 
                             class="btn btn-lg">
-                        Reset
+                        Play Again
                     </button>
                 </div>
             `);
