@@ -2,17 +2,18 @@
 $(document).ready(function () {
     var countDown = 30;
     var intervalId;
-    var questionCount = 0;
+
     var messages = [
         "CORRECT!",
         "WRONG CHOICE!",
         "TIMES UP!"
     ];
     var userMessage = " ";
+
     var totalCorrectAnswers = 0;
     var totalWrongAnswers = 0;
 
-    var shuffledQuestions = [];
+    var questionCount = 0;
 
     function startCountDown() {
         intervalId = setInterval(decrement, 1000);
@@ -34,7 +35,7 @@ $(document).ready(function () {
 
         if (countDown === 0) {
             game.displayAnswer();
-        } 
+        }
     }
 
     var game = {
@@ -270,11 +271,24 @@ $(document).ready(function () {
                         Start
                     </button>
                 </div>
+                <div id="start-image">
+                    <img src="assets/images/StartPageImage.jpg"
+                     height="500">
+                </div>    
             `);
         },
         pickQuestion: function () {
-            var randomQuestion = game.questions[Math.floor(Math.random()
-                * game.questions.length)];
+            if (questionCount === 0) {
+                var arr = game.questions;
+
+                for (var i = arr.length - 1; i > 0; i -= 1) {
+                    var randomIndex = Math.floor(Math.random() * (i + 1));
+                    var tempValue = arr[i];
+                    arr[i] = arr[randomIndex];
+                    arr[randomIndex] = tempValue;
+                }
+            }
+            var randomQuestion = game.questions[questionCount];
 
             Object.assign(game.currentQuestion, randomQuestion);
         },
