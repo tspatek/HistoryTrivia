@@ -1,2 +1,2 @@
-# TriviaGame
-https://tspatek.github.io/TriviaGame/
+# HistoryTrivia
+https://tspatek.github.io/HistoryTrivia/
