@@ -307,6 +307,19 @@ $(document).ready(function () {
                 img: "assets/images/BerlinWall.jpg"
             }
         ],
+        displayBackground: function() {
+            $(".background").append(`
+             <div class="container-flex">
+                <div class="row">  
+                    <div class="col-1">
+                        <!--This div remains empty-->
+                    </div>
+                    <div id="sheet-home" class="col-5 m-5 text-center justify-content-center">
+                        <!-- All content goes here -->
+                    </div>
+                </div>
+            </div>`);
+        },
         displayStartScreen: function () {
             $("#sheet-home").append(`
                 <div id="title" class="m-5">
@@ -462,7 +475,7 @@ $(document).ready(function () {
     };
 
     //Start Game
-    game.displayStartScreen();
+    game.displayBackground().displayStartScreen();
 
     $("#sheet-home").on("click", "#start-button", game.displayQuestion);
 
