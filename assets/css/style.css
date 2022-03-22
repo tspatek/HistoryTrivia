@@ -37,3 +37,10 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.choice.hover {
+    font-weight: bold;
+}
+
+.touch {
+}

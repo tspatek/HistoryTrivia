@@ -308,26 +308,38 @@ $(document).ready(function () {
             }
         ],
         displayBackground: function() {
+            $("html").append(`
+            <body class="background">
+                <!--Dynamically generated content from game.displaySheet() 
+                    goes here-->
+            </body>`);
+        },
+        displaySheet: function() {
             $(".background").append(`
              <div class="container-flex">
                 <div class="row">  
                     <div class="col-1">
                         <!--This div remains empty-->
                     </div>
-                    <div id="sheet-home" class="col-5 m-5 text-center justify-content-center">
-                        <!-- All content goes here -->
+                    <div id="sheet-home" class="col-5 m-5 text-center 
+                        justify-content-center">
+                        <!--Dynamically generated content from 
+                            displayStartScreen() goes here-->
                     </div>
                 </div>
             </div>`);
         },
         displayStartScreen: function () {
+            game.displayBackground();
+            game.displaySheet();
+
             $("#sheet-home").append(`
                 <div id="title" class="m-5">
                     <h1>WORLD HISTORY TRIVIA</h1>
                 </div>
                 <div id="start" class="m-5">
                     <button id="start-button" type="button" 
-                            class="btn btn-lg">
+                        class="btn btn-lg">
                         Start
                     </button>
                 </div>
@@ -394,7 +406,9 @@ $(document).ready(function () {
             startCountDown();
         },
         calculateChoice: function (event) {
-            var userChoice = event.currentTarget.textContent.trim();
+            var userChoice = event.currentTarget.textContent.trim() {
+
+            };
             if (userChoice === game.currentQuestion.correctAnswer) {
 
                 totalCorrectAnswers++;
@@ -475,7 +489,7 @@ $(document).ready(function () {
     };
 
     //Start Game
-    game.displayBackground().displayStartScreen();
+    game.displayStartScreen();
 
     $("#sheet-home").on("click", "#start-button", game.displayQuestion);
 
