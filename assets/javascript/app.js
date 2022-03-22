@@ -406,9 +406,8 @@ $(document).ready(function () {
             startCountDown();
         },
         calculateChoice: function (event) {
-            var userChoice = event.currentTarget.textContent.trim() {
+            var userChoice = event.currentTarget.textContent.trim();
 
-            };
             if (userChoice === game.currentQuestion.correctAnswer) {
 
                 totalCorrectAnswers++;

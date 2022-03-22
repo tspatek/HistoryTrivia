@@ -6,6 +6,16 @@ body {
     padding: 0px;
 }
 
+button {
+    background-color: #311c0f;
+    color: #f5dfb3;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .background { 
     background-image: url("../images/Background.jpg");
     background-repeat: no-repeat;
@@ -21,26 +31,13 @@ body {
     height: 100%;
 }
 
+.choice:hover {
+    font-weight: bold;
+}
+
 #sheet-home {
     background-image: url("../images/Sheet.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-}
-
-button {
-    background-color: #311c0f;
-    color: #f5dfb3;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-.choice.hover {
-    font-weight: bold;
-}
-
-.touch {
 }
