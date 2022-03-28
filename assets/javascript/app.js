@@ -311,7 +311,7 @@ $(document).ready(function () {
         displayBackground: function() {
             $("html").append(`
             <body class="background">
-                ${("body").game.displaySheet}
+                ${("body").append(game.displaySheet())}
             </body>`);
         },
         displaySheet: function() {
