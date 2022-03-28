@@ -8,6 +8,7 @@ $(document).ready(function () {
         "WRONG CHOICE!",
         "TIMES UP!"
     ];
+
     var userMessage = " ";
 
     var totalCorrectAnswers = 0;
@@ -310,8 +311,7 @@ $(document).ready(function () {
         displayBackground: function() {
             $("html").append(`
             <body class="background">
-                <!--Dynamically generated content from game.displaySheet() 
-                    goes here-->
+                ${("body").game.displaySheet}
             </body>`);
         },
         displaySheet: function() {
@@ -331,7 +331,6 @@ $(document).ready(function () {
         },
         displayStartScreen: function () {
             game.displayBackground();
-            game.displaySheet();
 
             $("#sheet-home").append(`
                 <div id="title" class="m-5">
