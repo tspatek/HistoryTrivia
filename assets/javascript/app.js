@@ -311,26 +311,25 @@ $(document).ready(function () {
         displayBackground: function() {
             $("html").append(`
             <body class="background">
-                ${("body").append(game.displaySheet())}
             </body>`);
         },
+        // div .col-1 remains empty for formatting
+        // div #sheet-home is for dynamically generated html
         displaySheet: function() {
             $(".background").append(`
              <div class="container-flex">
                 <div class="row">  
                     <div class="col-1">
-                        <!--This div remains empty-->
                     </div>
                     <div id="sheet-home" class="col-5 m-5 text-center 
                         justify-content-center">
-                        <!--Dynamically generated content from 
-                            displayStartScreen() goes here-->
                     </div>
                 </div>
             </div>`);
         },
         displayStartScreen: function () {
             game.displayBackground();
+            game.displaySheet();
 
             $("#sheet-home").append(`
                 <div id="title" class="m-5">
